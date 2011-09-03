@@ -1,0 +1,185 @@
+#!/ usr/bin/env python
+# -*- coding : utf -8 -*-
+
+# Copyright 2011 Josef Wachtler
+#
+# This file is part of Stat466.
+#
+# Stat466 is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Stat466 is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Stat466.  If not, see <http://www.gnu.org/licenses/>.
+
+
+# players.py 
+import logging
+import datetime
+from dateutil import parser
+from PyQt4 import QtCore
+from PyQt4.QtGui import *
+from database.models import Player
+
+        
+class EditPlayer(QWidget):
+  
+    def __init__(self, player = None, parent = None):
+        QWidget.__init__(self, parent)
+        self.parent = parent
+        self.player_to = player
+        
+        gtext = self.tr('Create a new Player')
+        if player is not None:
+            gtext = self.tr('Edit a Player')
+        greet = QLabel(gtext, self)
+        
+        save = QPushButton(self.tr('Save Player'), self)
+        self.connect(save, QtCore.SIGNAL('clicked()'), 
+            self.__handle_save)
+            
+        chancel = QPushButton(self.tr('Chancel'), self)
+        self.connect(chancel, QtCore.SIGNAL('clicked()'), 
+            self.__handle_chancel) 
+        
+        lbl_name = QLabel(self.tr('Name:'), self)
+        self.name = QLineEdit()
+        lbl_fullname = QLabel(self.tr('Fullame:'), self)
+        self.fullname = QLineEdit()
+        
+        if player is not None:
+            self.name.setText(player.name)
+            self.fullname.setText(player.fullname)
+        
+        hbox_name = QHBoxLayout()
+        hbox_name.addWidget(lbl_name)
+        hbox_name.addWidget(self.name)
+        
+        hbox_fullname = QHBoxLayout()
+        hbox_fullname.addWidget(lbl_fullname)
+        hbox_fullname.addWidget(self.fullname)
+        
+        hbox_btns = QHBoxLayout()
+        hbox_btns.addStretch(2)
+        hbox_btns.addWidget(save)
+        hbox_btns.addWidget(chancel)
+
+        vbox = QVBoxLayout()
+        vbox.addStretch(1)
+        vbox.addWidget(greet)
+        vbox.addStretch(1)
+        vbox.addLayout(hbox_name)
+        vbox.addStretch(1)
+        vbox.addLayout(hbox_fullname)
+        vbox.addStretch(1)
+        vbox.addLayout(hbox_btns)
+        
+        self.setLayout(vbox)
+        
+        
+        
+        
+    def __handle_save(self):
+        n = unicode(self.name.text())
+        fn = unicode(self.fullname.text())
+        if len(n) <= 0 or len(fn) <= 0:
+            QMessageBox.warning(self, self.tr('Fill all'),
+                              self.tr("Please fill in all fields."))
+            return
+        
+        if self.player_to is None:
+            self.player_to = Player(name = n, fullname = fn)
+        else:
+            self.player_to.name = n
+            self.player_to.fullname = fn
+        
+        self.player_to.save()
+        self.name.setText('')
+        self.fullname.setText('')
+        logging.info('player saved in db - ' + self.player_to.info())
+        QMessageBox.information(self, self.tr('Player saved'),
+                              self.tr("The player was saved successfully."))
+        self.player_to = None
+        self.parent.go_home()
+    
+
+    def __handle_chancel(self):
+        reply = QMessageBox.question(self, self.tr('Chancel?'),
+            self.tr("Are you sure you want to chancel and do not save the player?"), 
+            QMessageBox.Yes, QMessageBox.No)
+
+        if reply == QMessageBox.Yes:
+            self.name.setText('')
+            self.fullname.setText('')
+            self.player_to = None
+            self.parent.go_home()
+            
+    
+
+        
+class ListPlayers(QWidget):
+  
+    def __init__(self, parent = None):
+        QWidget.__init__(self, parent)
+        self.parent = parent
+        
+        greet = QLabel(self.tr('Edit Players'), self)
+        
+        self.list_of_players = QListWidget()
+        
+        self.all_players = []
+        self.__fill_list()
+        
+        edit = QPushButton(self.tr('Edit Player'), self)
+        self.connect(edit, QtCore.SIGNAL('clicked()'), 
+            self.__handle_edit)
+        delete = QPushButton(self.tr('Delete Player'), self)
+        self.connect(delete, QtCore.SIGNAL('clicked()'), 
+            self.__handle_delete) 
+        
+        hbox_btns = QHBoxLayout()
+        hbox_btns.addWidget(edit)
+        hbox_btns.addWidget(delete)
+        
+        vbox = QVBoxLayout()
+        vbox.addWidget(greet)
+        vbox.addWidget(self.list_of_players)
+        vbox.addLayout(hbox_btns)
+        
+        self.setLayout(vbox)
+    
+
+    def __fill_list(self):
+        self.list_of_players.clear()
+        self.all_players = Player.get()
+        for p in self.all_players:
+            self.list_of_players.addItem(p.name + ' ' + p.fullname)
+        
+
+    def __handle_delete(self):
+        reply = QMessageBox.question(self, self.tr('Delete?'),
+            self.tr("Are you sure you want to delete the player? This also deletes all games he played"), 
+            QMessageBox.Yes, QMessageBox.No)
+
+        if reply == QMessageBox.Yes:
+            p = self.all_players[self.list_of_players.currentRow()]
+            t = p.info()
+            p.delete()
+            self.__fill_list()
+            logging.info('player deleted - ' + t )
+            
+    
+
+    def __handle_edit(self):
+        edit = EditPlayer(parent=self.parent, 
+            player= self.all_players[self.list_of_players.currentRow()])
+        self.parent.setCentralWidget(edit)
+            
+            
+            
