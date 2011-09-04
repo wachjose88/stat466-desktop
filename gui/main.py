@@ -33,7 +33,8 @@ class MainWindow(QtGui.QMainWindow):
         QtGui.QMainWindow.__init__(self)
 
         self.resize(800, 600)
-        self.setWindowTitle(self.tr('Stat466 - Statistics for Bauernschnapsen'))
+        self.setWindowTitle(self.tr('Stat466 - Statistics for Bauernschnapsen')
+            + ' 0.1')
         self.center()
         
         self.statusBar().showMessage(self.tr('Welcome'))    
