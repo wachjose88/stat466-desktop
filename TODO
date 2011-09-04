@@ -2,12 +2,16 @@
    TODO - Stat466 - Statistics for Bauernschnapsen
   =================================================
   
+   - Packaging
+     - .deb
+     - .rpm
+     - Windows Installer
    
    - Write a better documentation.
    - Write help sites.
    
    - Redesign database Layout:
-     use 3rd normal form
+     - use 3rd normal form
    - Use a database wrapper
    
    - Compute more statistical values

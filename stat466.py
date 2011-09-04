@@ -36,24 +36,29 @@ def main():
     
     logging.basicConfig(
         format='%(asctime)s %(levelname)s: %(message)s',
-        filename='logs/main.log', 
-        level=logging.INFO)
+        #filename='logs/main.log', 
+        level=logging.DEBUG)
     
     logging.info('Start of Stat466')
     app = QtGui.QApplication(sys.argv)
+    
     locale = QtCore.QLocale.system().name()
     qt_translator = QtCore.QTranslator()
-    if qt_translator.load("qt_" + locale, QtCore.QLibraryInfo.location(QtCore.QLibraryInfo.TranslationsPath)):
+    if qt_translator.load("qt_" + locale, 
+                          QtCore.QLibraryInfo.location(
+                          QtCore.QLibraryInfo.TranslationsPath)):
         app.installTranslator(qt_translator)
+        
     translator = QtCore.QTranslator()
     if translator.load("stat466_" + locale + ".qm", "./resources/lang/"):
         app.installTranslator(translator)
+        
     main = MainWindow()
     main.show()
     exit_status = app.exec_()
     logging.info('Stop of Stat466')
-    sys.exit(exit_status)
+    return exit_status
 
 
 if __name__ == "__main__": 
-    main()
+    sys.exit(main())
