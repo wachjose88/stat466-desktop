@@ -1,0 +1,47 @@
+
+   README - Stat466 - Statistics for Bauernschnapsen
+  ===================================================
+  
+   
+   
+   1.) About
+  ===========
+  
+   Stat466 is a little application that provides the possibility to 
+   record game results of the famous card game Bauernschnapsen. 
+   
+   
+   2.) License
+  =============
+   
+   Copyright 2011 Josef Wachtler 
+
+   Stat466 is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   Stat466 is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Stat466.  If not, see <http://www.gnu.org/licenses/>.
+   
+   
+   3.) Requirements
+  ==================
+  
+   Stat466 requires the following software to run:
+   
+    - Python Programming Language: <www.python.org>
+    - PyQt4: <http://www.riverbankcomputing.co.uk/software/pyqt/download>
+   
+   
+   4.) Installation and  Run
+  ===========================
+  
+   To install Stat466 extract the archive stat466-0-1.tar.gz and to
+   run start the file stat466.py with python.
+   
