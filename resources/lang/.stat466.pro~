@@ -1,2 +1,0 @@
-SOURCES = ../../gui/main.py ../../gui/players.py 
-TRANSLATIONS = stat466_de.ts
