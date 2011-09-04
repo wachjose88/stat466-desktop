@@ -1,0 +1,11 @@
+# bk files
+*~
+
+# python binary
+*.pyc
+
+# dolphin
+.directory
+
+# db files
+*.db

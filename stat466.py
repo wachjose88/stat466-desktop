@@ -36,7 +36,7 @@ def main():
     
     logging.basicConfig(
         format='%(asctime)s %(levelname)s: %(message)s',
-        #filename='logs/main.log', 
+        filename='logs/main.log', 
         level=logging.INFO)
     
     logging.info('Start of Stat466')
