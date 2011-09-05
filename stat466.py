@@ -21,18 +21,25 @@
 # along with Stat466.  If not, see <http://www.gnu.org/licenses/>.
 
 # stat466.py 
+"""
+This is the main module of Stat466. It calls the main method to init
+and to start Stat466.
+"""
 
 import logging
 import datetime
 import sys
 from PyQt4 import QtGui, QtCore
 from gui.main import MainWindow
-from database.db import DBConnector
-from database.models import Player
-from database.models import Game
 
 
 def main(): 
+    """
+    This is the main method of Stat466. It inits the logger and creates
+    the QApplication. Furthermore it loads and installs translators for
+    Qt and Stat466. Finally it shows the MainWindow and enters the main
+    loop of the app.
+    """
     
     logging.basicConfig(
         format='%(asctime)s %(levelname)s: %(message)s',

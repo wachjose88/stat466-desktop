@@ -21,7 +21,7 @@
 # along with Stat466.  If not, see <http://www.gnu.org/licenses/>.
 
 
-# models.py 
+# database/models.py 
 """
 This module provides model classes for the tables of the database.
 It uses database.db.DBConnector to interact with the db.
@@ -161,7 +161,17 @@ class Game():
     def __init__(self, played_at, points_t1, points_t2, pid_t1p1, pid_t1p2, 
                  pid_t2p1, pid_t2p2, id = None):
         """
-        ctor: inits game
+        Constructor: inits a player
+        
+        Keyword arguments:
+        played_at -- datetime of the game
+        points_t1 -- points lost by team 1
+        points_t2 -- points lost by team 2 
+        pid_t1p1 -- database.models.Player number 1 of team 1
+        pid_t1p2 -- database.models.Player number 2 of team 1
+        pid_t2p1 -- database.models.Player number 1 of team 2
+        pid_t2p2 -- database.models.Player number 2 of team 2
+        id -- id of a game, None if game is new
         """
         self.played_at = played_at
         self.points_t1  = points_t1
@@ -175,7 +185,7 @@ class Game():
 
     def info(self): 
         """
-        A string with a short info added the game is returned.
+        A string with a short info of the game is returned.
         """
         i = u'played at: ' + unicode(self.played_at) + u', points: '
         i += unicode(self.points_t1) + u':' + unicode(self.points_t2) + u'\n'
@@ -268,7 +278,15 @@ class Game():
     @staticmethod
     def getAnalysis(players):
         """
-        returns an analysis
+        Returns an analysis of the games of the players as a dictionary.
+        It contains:
+        t1 -- sum of the points of team 1
+        t2 -- sum of the points of team 2 
+        num -- number of played games
+        
+        Keyword arguments:
+        players -- a dictionary with the id's of the players.
+                   Keys: t1p1, t1p2, t2p1, t2p2
         """
         Game.create()
         Player.create()

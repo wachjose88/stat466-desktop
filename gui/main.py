@@ -21,7 +21,11 @@
 # along with Stat466.  If not, see <http://www.gnu.org/licenses/>.
 
 
-# main.py 
+# gui/main.py 
+"""
+This module provides the MainWindow and the Home/Start page of Stat466.
+"""
+
 import logging
 from PyQt4 import QtGui, QtCore
 
@@ -29,12 +33,22 @@ from gui.players import EditPlayer, ListPlayers
 from gui.games import EditGame, GameAnalysis
 
 class MainWindow(QtGui.QMainWindow):
+    """
+    This class repressents the MainWindow of Stat466. It holds the menubar
+    and the toolbar and their actions.
+    """
+    
     def __init__(self):
+        """
+        Constructor: inits all elements of the Window.
+        It creates the actions and connects them to their methods.
+        """
+        
         QtGui.QMainWindow.__init__(self)
 
         self.resize(800, 600)
         self.setWindowTitle(self.tr('Stat466 - Statistics for Bauernschnapsen')
-            + ' 0.1')
+            + ' 0.2b')
         self.center()
         
         self.statusBar().showMessage(self.tr('Welcome'))    
@@ -98,23 +112,42 @@ class MainWindow(QtGui.QMainWindow):
         
         
     def __handle_game_analysis(self):
+        """
+        Loads the GameAnalysis widget and sets it as the central widget
+        of the MainWindow.
+        """
         ga = GameAnalysis(parent = self)
         self.setCentralWidget(ga)
         
     def __handle_list_player(self):
+        """
+        Loads the ListPlayers widget and sets it as the central widget
+        of the MainWindow.
+        """
         listp = ListPlayers(parent = self)
         self.setCentralWidget(listp)
         
     def __handle_new_player(self):
+        """
+        Loads the EditPlayer widget and sets it as the central widget
+        of the MainWindow.
+        """
         edit = EditPlayer(parent = self)
         self.setCentralWidget(edit)
         
     def __handle_new_game(self):
+        """
+        Loads the EditGame widget and sets it as the central widget
+        of the MainWindow.
+        """
         edit = EditGame(parent = self)
         self.setCentralWidget(edit)
     
         
     def __handle_about(self):
+        """
+        Shows a QMessageBox with some Infos about Stat466.
+        """
         QtGui.QMessageBox.about(self, self.tr('About Stat466'),
             self.tr(
         'Stat466 is a little application that provides\n'
@@ -125,6 +158,10 @@ class MainWindow(QtGui.QMainWindow):
     
     
     def closeEvent(self, event):
+        """
+        Reimplements the closeEvent of the MainWindow and adds a question
+        dialog.
+        """
         reply = QtGui.QMessageBox.question(self, self.tr('Quit?'),
             self.tr("Are you sure to quit?"), QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
 
@@ -135,18 +172,32 @@ class MainWindow(QtGui.QMainWindow):
 
 
     def go_home(self):
+        """
+        Loads the Home widget and sets it as the central widget
+        of the MainWindow.
+        """
         home = Home() 
         self.setCentralWidget(home)
 
     def center(self):
+        """
+        Moves the MainWindow to the center of the screen.
+        """
         screen = QtGui.QDesktopWidget().screenGeometry()
         size =  self.geometry()
         self.move((screen.width()-size.width())/2, (screen.height()-size.height())/2)
         
         
 class Home(QtGui.QWidget):
-  
+    """
+    This class repressents a Home/Start page.
+    """
+    
     def __init__(self):
+        """
+        Constructor: inits all elements of the widget.
+        It shows a welcome message and an image with cards.
+        """
         QtGui.QWidget.__init__(self)
 
         self.greet = QtGui.QLabel(self.tr('Welcome to'), self)
