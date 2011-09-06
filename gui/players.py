@@ -22,6 +22,11 @@
 
 
 # players.py 
+"""
+This module provides a possibilty to create and edit players. Furthermore
+it offers a list of players.
+"""
+
 import logging
 import datetime
 from dateutil import parser
@@ -31,8 +36,22 @@ from database.models import Player
 
         
 class EditPlayer(QWidget):
-  
+    """
+    This class offers the possibilty to create and edit players. 
+    """
+    
     def __init__(self, player = None, parent = None):
+        """
+        Constructor: inits all elements of the widget. Ít offers input
+        textboxes for the name and the fullname of a player.
+        It creates the actions and connects them to their methods.
+        
+        Keyword arguments:
+        player -- a database.models.Player to edit, if None a new one 
+                  is created
+        parent -- parent widget
+        """
+        
         QWidget.__init__(self, parent)
         self.parent = parent
         self.player_to = player
@@ -88,6 +107,9 @@ class EditPlayer(QWidget):
         
         
     def __handle_save(self):
+        """
+        Saves the current Player. 
+        """
         n = unicode(self.name.text())
         fn = unicode(self.fullname.text())
         if len(n) <= 0 or len(fn) <= 0:
@@ -112,6 +134,10 @@ class EditPlayer(QWidget):
     
 
     def __handle_chancel(self):
+        """
+        Asks if the current Player realy should not be saved and 
+        leaves the EditPlayer dialog.
+        """
         reply = QMessageBox.question(self, self.tr('Chancel?'),
             self.tr("Are you sure you want to chancel and do not save the player?"), 
             QMessageBox.Yes, QMessageBox.No)
@@ -126,8 +152,22 @@ class EditPlayer(QWidget):
 
         
 class ListPlayers(QWidget):
+    """
+    This class offers a list of all players and the possibilty to load
+    EditPlayer to edit the selected player. Furthermore the selected
+    player could be deleted. 
+    """
   
     def __init__(self, parent = None):
+        """
+        Constructor: inits all elements of the widget. Ít offers a 
+        list of all players.
+        It creates the actions and connects them to their methods.
+        
+        Keyword arguments:
+        parent -- parent widget
+        """
+        
         QWidget.__init__(self, parent)
         self.parent = parent
         
@@ -158,6 +198,9 @@ class ListPlayers(QWidget):
     
 
     def __fill_list(self):
+        """
+        Fills the QListWidget of the players with all players from db.
+        """
         self.list_of_players.clear()
         self.all_players = Player.get()
         for p in self.all_players:
@@ -165,6 +208,10 @@ class ListPlayers(QWidget):
         
 
     def __handle_delete(self):
+        """
+        Asks if the selected Player realy should be deleted and if yes
+        the player is deleted.
+        """
         reply = QMessageBox.question(self, self.tr('Delete?'),
             self.tr("Are you sure you want to delete the player? This also deletes all games he played"), 
             QMessageBox.Yes, QMessageBox.No)
@@ -179,6 +226,9 @@ class ListPlayers(QWidget):
     
 
     def __handle_edit(self):
+        """
+        Loads EditPlayer with the selected Player to edit him.
+        """
         edit = EditPlayer(parent=self.parent, 
             player= self.all_players[self.list_of_players.currentRow()])
         self.parent.setCentralWidget(edit)
