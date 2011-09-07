@@ -181,12 +181,16 @@ class ListPlayers(QWidget):
         edit = QPushButton(self.tr('Edit Player'), self)
         self.connect(edit, QtCore.SIGNAL('clicked()'), 
             self.__handle_edit)
+        statistics = QPushButton(self.tr('Statistics'), self)
+        self.connect(statistics, QtCore.SIGNAL('clicked()'), 
+            self.__handle_statistics) 
         delete = QPushButton(self.tr('Delete Player'), self)
         self.connect(delete, QtCore.SIGNAL('clicked()'), 
             self.__handle_delete) 
         
         hbox_btns = QHBoxLayout()
         hbox_btns.addWidget(edit)
+        hbox_btns.addWidget(statistics)
         hbox_btns.addWidget(delete)
         
         vbox = QVBoxLayout()
@@ -232,6 +236,14 @@ class ListPlayers(QWidget):
         edit = EditPlayer(parent=self.parent, 
             player= self.all_players[self.list_of_players.currentRow()])
         self.parent.setCentralWidget(edit)
+           
+
+    def __handle_statistics(self):
+        """
+        TODO: implement statistics of a player
+        """
+        logging.debug('TODO: implement statistics of a player')
+        pass
             
             
             
