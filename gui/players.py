@@ -21,7 +21,7 @@
 # along with Stat466.  If not, see <http://www.gnu.org/licenses/>.
 
 
-# players.py 
+# gui/players.py 
 """
 This module provides a possibilty to create and edit players. Furthermore
 it offers a list of players.

@@ -21,7 +21,12 @@
 # along with Stat466.  If not, see <http://www.gnu.org/licenses/>.
 
 
-# players.py 
+# gui/games.py 
+"""
+This module provides a possibilty to create games. Furthermore
+it offers an analysis of games.
+"""
+
 import logging
 import datetime
 from dateutil import parser
@@ -31,8 +36,19 @@ from database.models import Player, Game
 
         
 class GameAnalysis(QWidget):
-  
+    """
+    This class offers the possibilty to perform an analysis of games. 
+    """
+     
     def __init__(self, parent = None):
+        """
+        Constructor: inits all elements of the widget. Ít offers an 
+        analysis of games by specifying the players.
+        It creates the actions and connects them to their methods.
+        
+        Keyword arguments:
+        parent -- parent widget
+        """
         QWidget.__init__(self, parent)
         self.parent = parent
         self.game = None
@@ -105,6 +121,9 @@ class GameAnalysis(QWidget):
     
 
     def __fill_combo(self, index = 0):
+        """
+        Returns a new QComboBox with all players.
+        """
         combo = QComboBox()
         for p in self.all_players:
             combo.addItem(p.name + ' ' + p.fullname)
@@ -112,6 +131,9 @@ class GameAnalysis(QWidget):
         return combo
         
     def __handle_ok(self):
+        """
+        Performs the analysis of all games of the specified players.
+        """
         t1p1 = self.all_players[self.combo_t1_p1.currentIndex()] 
         t1p2 = self.all_players[self.combo_t1_p2.currentIndex()] 
         t2p1 = self.all_players[self.combo_t2_p1.currentIndex()] 
@@ -137,8 +159,19 @@ class GameAnalysis(QWidget):
     
 
 class EditGame(QWidget):
-  
+    """
+    This class offers the possibilty to create games. 
+    """
+     
     def __init__(self, parent = None):
+        """
+        Constructor: inits all elements of the widget. Ít offers a 
+        calendar, combo- and input boxes to create a game.
+        It creates the actions and connects them to their methods.
+        
+        Keyword arguments:
+        parent -- parent widget
+        """
         QWidget.__init__(self, parent)
         self.parent = parent
         self.game = None
@@ -226,6 +259,9 @@ class EditGame(QWidget):
 
 
     def __fill_combo(self, index = 0):
+        """
+        Returns a new QComboBox with all players.
+        """
         combo = QComboBox()
         for p in self.all_players:
             combo.addItem(p.name + ' ' + p.fullname)
@@ -233,6 +269,9 @@ class EditGame(QWidget):
         return combo
         
     def __handle_save(self):
+        """
+        Saves the new game to db.
+        """
         try:
             date = self.calendar.selectedDate()
             ds = '%d-%d-%d ' % (date.year(), date.month(), date.day())
@@ -257,6 +296,10 @@ class EditGame(QWidget):
     
 
     def __handle_chancel(self):
+        """
+        Asks if the new game realy should not be saved and 
+        leaves the EditGame dialog.
+        """
         reply = QMessageBox.question(self, self.tr('Chancel?'),
             self.tr("Are you sure you want to chancel and do not save the game?"), 
             QMessageBox.Yes, QMessageBox.No)
