@@ -42,7 +42,7 @@ class EditPlayer(QWidget):
     
     def __init__(self, player = None, parent = None):
         """
-        Constructor: inits all elements of the widget. Ít offers input
+        Constructor: inits all elements of the widget. It offers input
         textboxes for the name and the fullname of a player.
         It creates the actions and connects them to their methods.
         
@@ -160,7 +160,7 @@ class ListPlayers(QWidget):
   
     def __init__(self, parent = None):
         """
-        Constructor: inits all elements of the widget. Ít offers a 
+        Constructor: inits all elements of the widget. It offers a 
         list of all players.
         It creates the actions and connects them to their methods.
         

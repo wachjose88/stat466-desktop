@@ -42,7 +42,7 @@ class GameAnalysis(QWidget):
      
     def __init__(self, parent = None):
         """
-        Constructor: inits all elements of the widget. Ít offers an 
+        Constructor: inits all elements of the widget. It offers an 
         analysis of games by specifying the players.
         It creates the actions and connects them to their methods.
         
@@ -165,7 +165,7 @@ class EditGame(QWidget):
      
     def __init__(self, parent = None):
         """
-        Constructor: inits all elements of the widget. Ít offers a 
+        Constructor: inits all elements of the widget. It offers a 
         calendar, combo- and input boxes to create a game.
         It creates the actions and connects them to their methods.
         
