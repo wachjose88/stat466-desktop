@@ -150,11 +150,12 @@ class MainWindow(QtGui.QMainWindow):
         """
         QtGui.QMessageBox.about(self, self.tr('About Stat466'),
             self.tr(
-        'Stat466 is a little application that provides\n'
-        + 'the possibility to record game results of\n'
-        + 'the famous card game Bauernschnapsen.\n\n'
-        + 'Author: Josef Wachtler\n'
-        + 'e-mail: josef.wachtler@gmail.com\n'))
+        'Stat466 is a little application that provides '
+        + 'the possibility to record game results of '
+        + 'the famous card game Bauernschnapsen.') + '\n\n'
+        + self.tr('Author:') + ' Josef Wachtler\n'
+        + self.tr('e-mail:') + ' josef.wachtler@gmail.com\n'
+        + self.tr('Web:') + ' sourceforge.net/projects/stat466/\n')
     
     
     def closeEvent(self, event):
