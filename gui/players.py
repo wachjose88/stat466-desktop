@@ -287,13 +287,13 @@ class PlayerStatistics(QWidget):
         hbox_num.addWidget(lbl_num)
         hbox_num.addWidget(num)
         
-        lbl_lost = QLabel(self.tr('Games lost:'), self)
+        lbl_lost = QLabel(self.tr('Points lost:'), self)
         lost = QLabel(unicode(stat['lost']), self)
         hbox_lost = QHBoxLayout()
         hbox_lost.addWidget(lbl_lost)
         hbox_lost.addWidget(lost)
         
-        lbl_won = QLabel(self.tr('Games won:'), self)
+        lbl_won = QLabel(self.tr('Points won:'), self)
         won = QLabel(unicode(stat['won']), self)
         hbox_won = QHBoxLayout()
         hbox_won.addWidget(lbl_won)
