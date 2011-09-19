@@ -123,6 +123,43 @@ class Player():
                     PRIMARY KEY(pid))""")
         dbc.close()
             
+
+    def getStatistics(self):
+        """
+        Returns an analysis of the games of the player as a dictionary.
+        It contains:
+        won -- sum of won points 
+        lost -- sum of lost points 
+        num -- number of played games
+        """
+        Game.create()
+        Player.create()
+        dbc = DBConnector()
+        dbc.connect()
+        points = {'won' : 0, 'lost' : 0, 'num' : 0}
+        players = {'pid' : self.id}
+        sql = """SELECT SUM(points_t1) AS st1, SUM(points_t2) AS st2, 
+            COUNT(gid) AS sall FROM tbl_games WHERE
+            pid_t1p1=:pid OR pid_t1p2=:pid """
+        sums = dbc.execute(sql, players)
+        if sums[0][0] is not None:
+            points['lost'] += sums[0][0]
+        if sums[0][1] is not None:
+            points['won'] += sums[0][1]
+        if sums[0][2] is not None:
+            points['num'] += sums[0][2]
+        sql = """SELECT SUM(points_t1) AS st1, SUM(points_t2) AS st2, 
+            COUNT(gid) AS sall FROM tbl_games WHERE
+            pid_t2p1=:pid OR pid_t2p2=:pid """
+        sums = dbc.execute(sql, players)
+        if sums[0][1] is not None:
+            points['lost'] += sums[0][1]
+        if sums[0][0] is not None:
+            points['won'] += sums[0][0]
+        if sums[0][2] is not None:
+            points['num'] += sums[0][2]
+        dbc.close()
+        return points
  
     @staticmethod
     def get(clause = None, params = None):

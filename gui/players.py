@@ -243,6 +243,7 @@ class ListPlayers(QWidget):
         TODO: implement statistics of a player
         """
         logging.debug('TODO: implement statistics of a player')
+        print (self.all_players[self.list_of_players.currentRow()]).getStatistics()
         pass
             
             
