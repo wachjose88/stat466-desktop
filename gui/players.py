@@ -100,6 +100,7 @@ class EditPlayer(QWidget):
         vbox.addLayout(hbox_fullname)
         vbox.addStretch(1)
         vbox.addLayout(hbox_btns)
+        vbox.addStretch(3)
         
         self.setLayout(vbox)
         
