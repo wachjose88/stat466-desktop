@@ -181,12 +181,16 @@ class ListPlayers(QWidget):
         edit = QPushButton(self.tr('Edit Player'), self)
         self.connect(edit, QtCore.SIGNAL('clicked()'), 
             self.__handle_edit)
+        statistics = QPushButton(self.tr('Statistics'), self)
+        self.connect(statistics, QtCore.SIGNAL('clicked()'), 
+            self.__handle_statistics) 
         delete = QPushButton(self.tr('Delete Player'), self)
         self.connect(delete, QtCore.SIGNAL('clicked()'), 
             self.__handle_delete) 
         
         hbox_btns = QHBoxLayout()
         hbox_btns.addWidget(edit)
+        hbox_btns.addWidget(statistics)
         hbox_btns.addWidget(delete)
         
         vbox = QVBoxLayout()
@@ -232,6 +236,96 @@ class ListPlayers(QWidget):
         edit = EditPlayer(parent=self.parent, 
             player= self.all_players[self.list_of_players.currentRow()])
         self.parent.setCentralWidget(edit)
+           
+
+    def __handle_statistics(self):
+        """
+        Loads PlayerStatistics with the selected Player to perform statistic
+        """
+        stat = PlayerStatistics(parent=self.parent, 
+            player= self.all_players[self.list_of_players.currentRow()])
+        self.parent.setCentralWidget(stat)
             
             
-            
+
+        
+class PlayerStatistics(QWidget):
+    """
+    This class offers a statistic of all games played by a player.. 
+    """
+  
+    def __init__(self, player = None, parent = None):
+        """
+        Constructor: inits all elements of the widget. It offers a 
+        game statistic of a player.
+        It creates the actions and connects them to their methods.
+        
+        Keyword arguments:
+        player -- a database.models.Player to perform the statistics.
+        parent -- parent widget
+        """
+        
+        QWidget.__init__(self, parent)
+        self.parent = parent
+        self.player_to = player
+        stat = self.player_to.getStatistics()
+        
+        back = QPushButton(self.tr('Back'), self)
+        self.connect(back, QtCore.SIGNAL('clicked()'), 
+            self.__handle_back)
+        
+        greet = QLabel(self.tr('Statistics of all Games of:'), self)
+        name = QLabel(self.player_to.name + ' ' + self.player_to.fullname, self)
+        
+        hbox_name = QHBoxLayout() 
+        hbox_name.addWidget(greet)
+        hbox_name.addWidget(name)
+        
+        lbl_num = QLabel(self.tr('Games played:'), self)
+        num = QLabel(unicode(stat['num']), self)
+        hbox_num = QHBoxLayout()
+        hbox_num.addWidget(lbl_num)
+        hbox_num.addWidget(num)
+        
+        lbl_lost = QLabel(self.tr('Points lost:'), self)
+        lost = QLabel(unicode(stat['lost']), self)
+        hbox_lost = QHBoxLayout()
+        hbox_lost.addWidget(lbl_lost)
+        hbox_lost.addWidget(lost)
+        
+        lbl_won = QLabel(self.tr('Points won:'), self)
+        won = QLabel(unicode(stat['won']), self)
+        hbox_won = QHBoxLayout()
+        hbox_won.addWidget(lbl_won)
+        hbox_won.addWidget(won)
+
+        hbox_btns = QHBoxLayout()
+        hbox_btns.addWidget(back)
+        
+        vbox = QVBoxLayout()
+        vbox.addStretch(1)
+        vbox.addLayout(hbox_name)
+        vbox.addStretch(1)
+        vbox.addLayout(hbox_num)
+        vbox.addStretch(1)
+        vbox.addLayout(hbox_won)
+        vbox.addStretch(1)
+        vbox.addLayout(hbox_lost)
+        vbox.addStretch(1)
+        vbox.addLayout(hbox_btns)
+        vbox.addStretch(3)
+        
+        self.setLayout(vbox)
+        
+        logging.info('statistics of ' + self.player_to.name + ' ' 
+		        + self.player_to.fullname + '\n' + unicode(stat))
+        
+        
+        
+    def __handle_back(self):
+        """
+        Loads ListPlayers.
+        """
+        listp = ListPlayers(parent=self.parent)
+        self.parent.setCentralWidget(listp)
+           

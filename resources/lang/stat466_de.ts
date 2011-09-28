@@ -207,12 +207,12 @@ Es gibt nicht genügend Spieler.</translation>
 <context>
     <name>Home</name>
     <message>
-        <location filename="../../gui/main.py" line="204"/>
+        <location filename="../../gui/main.py" line="203"/>
         <source>Welcome to</source>
         <translation>Willkommen zu</translation>
     </message>
     <message>
-        <location filename="../../gui/main.py" line="206"/>
+        <location filename="../../gui/main.py" line="205"/>
         <source>Stat466 - Statistics for Bauernschnapsen</source>
         <translation>Stat466 - Statistik für Bauernschnapsen</translation>
     </message>
@@ -225,12 +225,12 @@ Es gibt nicht genügend Spieler.</translation>
         <translation>Spieler bearbeiten</translation>
     </message>
     <message>
-        <location filename="../../gui/players.py" line="215"/>
+        <location filename="../../gui/players.py" line="219"/>
         <source>Delete?</source>
         <translation>Löschen?</translation>
     </message>
     <message>
-        <location filename="../../gui/players.py" line="215"/>
+        <location filename="../../gui/players.py" line="219"/>
         <source>Are you sure you want to delete the player? This also deletes all games he played</source>
         <translation>Wollen Sie den Spieler wirklich löschen? Dadurch werden auch alle seine Spiele gelöscht.</translation>
     </message>
@@ -240,9 +240,14 @@ Es gibt nicht genügend Spieler.</translation>
         <translation>Spieler bearbeiten</translation>
     </message>
     <message>
-        <location filename="../../gui/players.py" line="184"/>
+        <location filename="../../gui/players.py" line="187"/>
         <source>Delete Player</source>
         <translation>Spieler löschen</translation>
+    </message>
+    <message>
+        <location filename="../../gui/players.py" line="184"/>
+        <source>Statistics</source>
+        <translation>Statistik</translation>
     </message>
 </context>
 <context>
@@ -293,12 +298,12 @@ Es gibt nicht genügend Spieler.</translation>
         <translation type="obsolete">Über Stat466</translation>
     </message>
     <message>
-        <location filename="../../gui/main.py" line="166"/>
+        <location filename="../../gui/main.py" line="165"/>
         <source>Quit?</source>
         <translation>Beenden?</translation>
     </message>
     <message>
-        <location filename="../../gui/main.py" line="166"/>
+        <location filename="../../gui/main.py" line="165"/>
         <source>Are you sure to quit?</source>
         <translation>Wollen Sie wirklich beenden?</translation>
     </message>
@@ -358,7 +363,7 @@ Es gibt nicht genügend Spieler.</translation>
         <translation>Schnellstartleiste</translation>
     </message>
     <message>
-        <location filename="../../gui/main.py" line="97"/>
+        <location filename="../../gui/main.py" line="151"/>
         <source>Stat466 is a little application that provides
 the possibility to record game results of
 the famous card game Bauernschnapsen.
@@ -392,6 +397,34 @@ e-mail: josef.wachtler@gmail.com</translation>
         <location filename="../../gui/main.py" line="151"/>
         <source>Web:</source>
         <translation>Internet:</translation>
+    </message>
+</context>
+<context>
+    <name>PlayerStatistics</name>
+    <message>
+        <location filename="../../gui/players.py" line="273"/>
+        <source>Back</source>
+        <translation>Zurück</translation>
+    </message>
+    <message>
+        <location filename="../../gui/players.py" line="277"/>
+        <source>Statistics of all Games of:</source>
+        <translation>Statistik aller Spielergebnisse von:</translation>
+    </message>
+    <message>
+        <location filename="../../gui/players.py" line="284"/>
+        <source>Games played:</source>
+        <translation>Anzahl der Spiele:</translation>
+    </message>
+    <message>
+        <location filename="../../gui/players.py" line="290"/>
+        <source>Points lost:</source>
+        <translation>Verlorene Bummerl:</translation>
+    </message>
+    <message>
+        <location filename="../../gui/players.py" line="296"/>
+        <source>Points won:</source>
+        <translation>Gewonnene Bummerl:</translation>
     </message>
 </context>
 </TS>
