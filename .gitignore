@@ -3,6 +3,8 @@
 
 # python binary
 *.pyc
+MANIFEST
+dist
 
 # dolphin
 .directory

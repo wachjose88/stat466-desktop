@@ -1,0 +1,2 @@
+include stat466.py README gpl-3.0.txt
+recursive-include resources * 
