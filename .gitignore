@@ -6,6 +6,8 @@
 MANIFEST
 dist
 
+build
+
 # dolphin
 .directory
 

@@ -60,7 +60,9 @@ class Utils():
         box += length * u'-'
         return box
         
-    
+
+PATH = ''
+
 class DBConnector():
     """
     A class which offers connection to the database in a simple form.
@@ -77,7 +79,7 @@ class DBConnector():
         connection -- connection to db
         cursor -- cursor of db
         """
-        self.db = u'main.db'
+        self.db = unicode(PATH) +  u'main.db'
         self.connection = None
         self.cursor = None
         

@@ -29,23 +29,33 @@ and to start Stat466.
 import logging
 import datetime
 import sys
+import os
 from PyQt4 import QtGui, QtCore
 from gui.main import MainWindow
+from database import db
 
 
-def main(): 
+def main(args): 
     """
     This is the main method of Stat466. It inits the logger and creates
     the QApplication. Furthermore it loads and installs translators for
     Qt and Stat466. Finally it shows the MainWindow and enters the main
     loop of the app.
     """
-    
-    logging.basicConfig(
-        format='%(asctime)s %(levelname)s: %(message)s',
-        #filename='logs/main.log', 
-        level=logging.DEBUG)
-    
+    if len(args) == 1 and args[0] == '-d':
+        logging.basicConfig(
+            format='%(asctime)s %(levelname)s: %(message)s',
+            level=logging.DEBUG)
+    else:
+        dir = os.path.expanduser('~/.stat466')
+        if not os.path.exists(dir):
+            os.makedirs(dir)
+        db.PATH = dir + '/'
+        logging.basicConfig(
+            format='%(asctime)s %(levelname)s: %(message)s',
+            filename=(dir + '/main.log'), 
+            level=logging.INFO)
+        
     logging.info('Start of Stat466')
     app = QtGui.QApplication(sys.argv)
     
@@ -68,4 +78,4 @@ def main():
 
 
 if __name__ == "__main__": 
-    sys.exit(main())
+    sys.exit(main(sys.argv[1:]))
