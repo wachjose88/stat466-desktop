@@ -59,9 +59,9 @@ class GameAnalysis(QWidget):
             return
             
         greet = QLabel(self.tr('Analysis'), self)
-        ok = QPushButton(self.tr('Show Analysis'), self)
+        ok = QPushButton(self.tr('Print Analysis'), self)
         self.connect(ok, SIGNAL('clicked()'), 
-            self.__handle_ok)
+            self.__handle_print)
          
         lbl_num = QLabel(self.tr('Games played:'), self)
         self.num = QLabel(' ', self)
@@ -88,7 +88,7 @@ class GameAnalysis(QWidget):
         hbox_pt1.addWidget(self.points_t1)
         vbox_game.addLayout(hbox_pt1)
         self.avg_t1 = QLabel(' ', self)
-        lbl_a1 = QLabel(self.tr(' AVG Points per Game:'), self)
+        lbl_a1 = QLabel(self.tr('AVG Points per Game:'), self)
         hbox_avg1 = QHBoxLayout()
         hbox_avg1.addWidget(lbl_a1)
         hbox_avg1.addWidget(self.avg_t1)
@@ -107,7 +107,7 @@ class GameAnalysis(QWidget):
         hbox_pt2.addWidget(self.points_t2)
         vbox_game.addLayout(hbox_pt2)
         self.avg_t2 = QLabel(' ', self)
-        lbl_a2 = QLabel(self.tr(' AVG Points per Game:'), self)
+        lbl_a2 = QLabel(self.tr('AVG Points per Game:'), self)
         hbox_avg2 = QHBoxLayout()
         hbox_avg2.addWidget(lbl_a2)
         hbox_avg2.addWidget(self.avg_t2)
@@ -117,7 +117,19 @@ class GameAnalysis(QWidget):
         vbox_game.addWidget(ok)
         
         self.setLayout(vbox_game)
-
+        
+        self.preview = QPrintPreviewDialog()
+        self.connect(self.preview,
+            SIGNAL("paintRequested (QPrinter *)"),self.__print)
+        self.connect(self.combo_t1_p1,
+            SIGNAL("currentIndexChanged (int)"),self.__handle_ok)
+        self.connect(self.combo_t1_p2,
+            SIGNAL("currentIndexChanged (int)"),self.__handle_ok)
+        self.connect(self.combo_t2_p1,
+            SIGNAL("currentIndexChanged (int)"),self.__handle_ok)
+        self.connect(self.combo_t2_p2,
+            SIGNAL("currentIndexChanged (int)"),self.__handle_ok)
+        self.__handle_ok()
     
 
     def __fill_combo(self, index = 0):
@@ -129,8 +141,8 @@ class GameAnalysis(QWidget):
             combo.addItem(p.name + ' ' + p.fullname)
         combo.setCurrentIndex(index)
         return combo
-        
-    def __handle_ok(self):
+    
+    def __perform_analysis(self):
         """
         Performs the analysis of all games of the specified players.
         """
@@ -141,21 +153,74 @@ class GameAnalysis(QWidget):
         params = {'t1p1' : t1p1.id, 't1p2' : t1p2.id, 
             't2p1' : t2p1.id, 't2p2' : t2p2.id }
         p = Game.getAnalysis(params)
-        self.points_t1.setText(unicode(p['t1']))
-        self.points_t2.setText(unicode(p['t2']))
         a1 = 0
         a2 = 0
         if p['num'] > 0:
             a1 = p['t1'] / p['num']
             a2 = p['t2'] / p['num']
-        self.avg_t1.setText(unicode(a1))
-        self.avg_t2.setText(unicode(a2))
-        self.num.setText(unicode(p['num']))
+        p['a1'] = a1
+        p['a2'] = a2
         logging.info(u'analysis of ' + t1p1.info() + u' and ' + t1p2.info()
             + u' vs. ' + t2p1.info() + u' and ' + t2p2.info() + u'\n'
             + u'num games: ' + unicode(p['num']) + u', points: '
             + unicode(p['t1']) + u':' + unicode(p['t2']) )
+        return p
+    
+    def __handle_ok(self):
+        """
+        Performs the analysis of all games of the specified players
+        and shows them.
+        """
+        p = self.__perform_analysis()
+        self.points_t1.setText(unicode(p['t1']))
+        self.points_t2.setText(unicode(p['t2']))
+        self.avg_t1.setText(unicode(p['a1']))
+        self.avg_t2.setText(unicode(p['a2']))
+        self.num.setText(unicode(p['num']))
         
+    
+    def __handle_print(self):
+        """
+        Prints the analysis of all games of the specified players.
+        """
+        self.preview.exec_()
+        
+    def __print(self, printer):
+        """
+        Formats the analysis of all games of the specified players 
+        for printing.
+        """
+        p = self.__perform_analysis()
+        t1p1 = self.all_players[self.combo_t1_p1.currentIndex()] 
+        t1p2 = self.all_players[self.combo_t1_p2.currentIndex()] 
+        t2p1 = self.all_players[self.combo_t2_p1.currentIndex()] 
+        t2p2 = self.all_players[self.combo_t2_p2.currentIndex()]
+        printLabel = QLabel(self.tr('Stat466 - Analysis')
+            + '\n\n' + self.tr('Games played:') + ' ' + unicode(p['num'])
+            + '\n\n-----------------------------------------------------------------\n' 
+            + self.tr('Team 1:') + ' ' + t1p1.name + ' ' + t1p1.fullname
+            + ' ' + self.tr('and') + ' ' + t1p2.name + ' ' + t1p2.fullname
+            + '\n' + self.tr('Points:') + ' ' + unicode(p['t1'])
+            + '\n' + self.tr('AVG Points per Game:') + ' ' + unicode(p['a1'])
+            + '\n-----------------------------------------------------------------' 
+            + '\n\n-----------------------------------------------------------------\n' 
+            + self.tr('Team 2:') + ' ' + t2p1.name + ' ' + t2p1.fullname
+            + ' ' + self.tr('and') + ' ' + t2p2.name + ' ' + t2p2.fullname
+            + '\n' + self.tr('Points:') + ' ' + unicode(p['t2'])
+            + '\n' + self.tr('AVG Points per Game:') + ' ' + unicode(p['a2'])
+            + '\n-----------------------------------------------------------------\n' 
+        )
+         
+        printLabel.setStyleSheet("""
+            QLabel { 
+                background-color : white; 
+                color : black; 
+                font-family: monospace;
+                font-size: 12pt;
+            }""")
+        painter = QPainter(printer)
+        printLabel.render(painter)
+        painter.end() 
     
 
 class EditGame(QWidget):
