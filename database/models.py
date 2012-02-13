@@ -332,10 +332,11 @@ class Game():
         points = {'t1' : 0, 't2' : 0, 'num' : 0}
         sql = """SELECT SUM(points_t1) AS st1, SUM(points_t2) AS st2, 
             COUNT(gid) AS sall FROM tbl_games WHERE
+            played_at <= :to AND played_at >= :from AND (
             ( pid_t1p1=:t1p1 AND pid_t1p2=:t1p2 AND pid_t2p1=:t2p1 AND pid_t2p2=:t2p2 ) OR
             ( pid_t1p1=:t1p1 AND pid_t1p2=:t1p2 AND pid_t2p1=:t2p2 AND pid_t2p2=:t2p1 ) OR
             ( pid_t1p1=:t1p2 AND pid_t1p2=:t1p1 AND pid_t2p1=:t2p1 AND pid_t2p2=:t2p2 ) OR
-            ( pid_t1p1=:t1p2 AND pid_t1p2=:t1p1 AND pid_t2p1=:t2p2 AND pid_t2p2=:t2p1 ) """
+            ( pid_t1p1=:t1p2 AND pid_t1p2=:t1p1 AND pid_t2p1=:t2p2 AND pid_t2p2=:t2p1 ) ) """
         sums = dbc.execute(sql, players)
         if sums[0][0] is not None:
             points['t1'] += sums[0][0]
@@ -345,10 +346,11 @@ class Game():
             points['num'] += sums[0][2]
         sql = """SELECT SUM(points_t1) AS st1, SUM(points_t2) AS st2, 
             COUNT(gid) AS sall  FROM tbl_games WHERE
+            played_at <= :to AND played_at >= :from AND (
             ( pid_t2p1=:t1p1 AND pid_t2p2=:t1p2 AND pid_t1p1=:t2p1 AND pid_t1p2=:t2p2 ) OR
             ( pid_t2p1=:t1p1 AND pid_t2p2=:t1p2 AND pid_t1p1=:t2p2 AND pid_t1p2=:t2p1 ) OR
             ( pid_t2p1=:t1p2 AND pid_t2p2=:t1p1 AND pid_t1p1=:t2p1 AND pid_t1p2=:t2p2 ) OR
-            ( pid_t2p1=:t1p2 AND pid_t2p2=:t1p1 AND pid_t1p1=:t2p2 AND pid_t1p2=:t2p1 ) """
+            ( pid_t2p1=:t1p2 AND pid_t2p2=:t1p1 AND pid_t1p1=:t2p2 AND pid_t1p2=:t2p1 ) ) """
         sums = dbc.execute(sql, players)
         if sums[0][1] is not None:
             points['t1'] += sums[0][1]

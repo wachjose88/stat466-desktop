@@ -69,11 +69,32 @@ class GameAnalysis(QWidget):
         hbox_num.addWidget(lbl_num)
         hbox_num.addWidget(self.num)
         
+        lbl_start_date = QLabel(self.tr('From:'), self)
+        self.start_date = QDateEdit(QDate(1900, 1, 1), self)
+        self.start_date.setDisplayFormat('dd.MM.yyyy')
+        self.start_date.setMinimumDate(QDate(1900, 1, 1))
+        self.start_date.setMaximumDate(QDate(3000, 1, 1))
+        lbl_end_date = QLabel(self.tr('To:'), self)
+        self.end_date = QDateEdit(QDate.currentDate (), self)
+        self.end_date.setDisplayFormat('dd.MM.yyyy')
+        self.end_date.setMinimumDate(QDate(1900, 1, 1))
+        self.end_date.setMaximumDate(QDate(3000, 1, 1))
+        hbox_start_date = QHBoxLayout()
+        hbox_start_date.addStretch(1)
+        hbox_start_date.addWidget(lbl_start_date)
+        hbox_start_date.addWidget(self.start_date)
+        hbox_start_date.addSpacing(11)
+        hbox_start_date.addWidget(lbl_end_date)
+        hbox_start_date.addWidget(self.end_date)
+        hbox_start_date.addStretch(1)
+        
         vbox_game = QVBoxLayout()
         vbox_game.addWidget(greet)
         vbox_game.addStretch(2)
-        vbox_game.addLayout(hbox_num)
+        vbox_game.addLayout(hbox_start_date)
         vbox_game.addStretch(2)
+        vbox_game.addLayout(hbox_num)
+        vbox_game.addStretch(1)
         
         lbl_t1 = QLabel(self.tr('Team 1:'), self)
         vbox_game.addWidget(lbl_t1)
@@ -141,6 +162,10 @@ class GameAnalysis(QWidget):
             SIGNAL("currentIndexChanged (int)"),self.__handle_ok)
         self.connect(self.combo_t2_p2,
             SIGNAL("currentIndexChanged (int)"),self.__handle_ok)
+        self.connect(self.start_date,
+            SIGNAL("dateChanged (const QDate&)"),self.__handle_ok)
+        self.connect(self.end_date,
+            SIGNAL("dateChanged (const QDate&)"),self.__handle_ok)
         self.__handle_ok()
     
 
@@ -162,8 +187,11 @@ class GameAnalysis(QWidget):
         t1p2 = self.all_players[self.combo_t1_p2.currentIndex()] 
         t2p1 = self.all_players[self.combo_t2_p1.currentIndex()] 
         t2p2 = self.all_players[self.combo_t2_p2.currentIndex()]
+        date_from = self.start_date.date().toPyDate()
+        date_to = self.end_date.date().toPyDate()
         params = {'t1p1' : t1p1.id, 't1p2' : t1p2.id, 
-            't2p1' : t2p1.id, 't2p2' : t2p2.id }
+            't2p1' : t2p1.id, 't2p2' : t2p2.id,
+            'from' : date_from, 'to' : date_to }
         p = Game.getAnalysis(params)
         a1 = 0
         a2 = 0
@@ -211,7 +239,11 @@ class GameAnalysis(QWidget):
         t1p2 = self.all_players[self.combo_t1_p2.currentIndex()] 
         t2p1 = self.all_players[self.combo_t2_p1.currentIndex()] 
         t2p2 = self.all_players[self.combo_t2_p2.currentIndex()]
+        date_from = self.start_date.date().toPyDate()
+        date_to = self.end_date.date().toPyDate()
         printLabel = QLabel(self.tr('Stat466 - Analysis')
+            + '\n\n' + self.tr('From:') + ' ' + unicode(date_from)
+            + '\n' + self.tr('To:') + ' ' + unicode(date_to)
             + '\n\n' + self.tr('Games played:') + ' ' + unicode(p['num'])
             + '\n\n-----------------------------------------------------------------\n' 
             + self.tr('Team 1:') + ' ' + t1p1.name + ' ' + t1p1.fullname
