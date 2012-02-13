@@ -87,6 +87,12 @@ class GameAnalysis(QWidget):
         hbox_pt1.addWidget(lbl_p1)
         hbox_pt1.addWidget(self.points_t1)
         vbox_game.addLayout(hbox_pt1)
+        self.diff_t1 = QLabel(' ', self)
+        hbox_diff_t1 = QHBoxLayout()
+        lbl_diff_t1 = QLabel(self.tr('Difference:'), self)
+        hbox_diff_t1.addWidget(lbl_diff_t1)
+        hbox_diff_t1.addWidget(self.diff_t1)
+        vbox_game.addLayout(hbox_diff_t1)
         self.avg_t1 = QLabel(' ', self)
         lbl_a1 = QLabel(self.tr('AVG Points per Game:'), self)
         hbox_avg1 = QHBoxLayout()
@@ -106,6 +112,12 @@ class GameAnalysis(QWidget):
         hbox_pt2.addWidget(lbl_p2)
         hbox_pt2.addWidget(self.points_t2)
         vbox_game.addLayout(hbox_pt2)
+        self.diff_t2 = QLabel(' ', self)
+        hbox_diff_t2 = QHBoxLayout()
+        lbl_diff_t2 = QLabel(self.tr('Difference:'), self)
+        hbox_diff_t2.addWidget(lbl_diff_t2)
+        hbox_diff_t2.addWidget(self.diff_t2)
+        vbox_game.addLayout(hbox_diff_t2)
         self.avg_t2 = QLabel(' ', self)
         lbl_a2 = QLabel(self.tr('AVG Points per Game:'), self)
         hbox_avg2 = QHBoxLayout()
@@ -160,6 +172,8 @@ class GameAnalysis(QWidget):
             a2 = p['t2'] / p['num']
         p['a1'] = a1
         p['a2'] = a2
+        p['d1'] = p['t2'] - p['t1']
+        p['d2'] = p['t1'] - p['t2']
         logging.info(u'analysis of ' + t1p1.info() + u' and ' + t1p2.info()
             + u' vs. ' + t2p1.info() + u' and ' + t2p2.info() + u'\n'
             + u'num games: ' + unicode(p['num']) + u', points: '
@@ -174,6 +188,8 @@ class GameAnalysis(QWidget):
         p = self.__perform_analysis()
         self.points_t1.setText(unicode(p['t1']))
         self.points_t2.setText(unicode(p['t2']))
+        self.diff_t1.setText(unicode(p['d1']))
+        self.diff_t2.setText(unicode(p['d2']))
         self.avg_t1.setText(unicode(p['a1']))
         self.avg_t2.setText(unicode(p['a2']))
         self.num.setText(unicode(p['num']))
@@ -201,12 +217,14 @@ class GameAnalysis(QWidget):
             + self.tr('Team 1:') + ' ' + t1p1.name + ' ' + t1p1.fullname
             + ' ' + self.tr('and') + ' ' + t1p2.name + ' ' + t1p2.fullname
             + '\n' + self.tr('Points:') + ' ' + unicode(p['t1'])
+            + '\n' + self.tr('Difference:') + ' ' + unicode(p['d1'])
             + '\n' + self.tr('AVG Points per Game:') + ' ' + unicode(p['a1'])
             + '\n-----------------------------------------------------------------' 
             + '\n\n-----------------------------------------------------------------\n' 
             + self.tr('Team 2:') + ' ' + t2p1.name + ' ' + t2p1.fullname
             + ' ' + self.tr('and') + ' ' + t2p2.name + ' ' + t2p2.fullname
             + '\n' + self.tr('Points:') + ' ' + unicode(p['t2'])
+            + '\n' + self.tr('Difference:') + ' ' + unicode(p['d2'])
             + '\n' + self.tr('AVG Points per Game:') + ' ' + unicode(p['a2'])
             + '\n-----------------------------------------------------------------\n' 
         )

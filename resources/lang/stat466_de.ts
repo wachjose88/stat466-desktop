@@ -4,82 +4,82 @@
 <context>
     <name>EditGame</name>
     <message>
-        <location filename="../../gui/games.py" line="184"/>
+        <location filename="../../gui/games.py" line="267"/>
         <source>Create a new Game</source>
         <translation>Neues Spielergebnis eintragen</translation>
     </message>
     <message>
-        <location filename="../../gui/games.py" line="185"/>
+        <location filename="../../gui/games.py" line="268"/>
         <source>Played at:</source>
         <translation>Gespielt am:</translation>
     </message>
     <message>
-        <location filename="../../gui/games.py" line="193"/>
+        <location filename="../../gui/games.py" line="276"/>
         <source>Save Game</source>
         <translation>Spielergebnis speichern</translation>
     </message>
     <message>
-        <location filename="../../gui/games.py" line="197"/>
+        <location filename="../../gui/games.py" line="280"/>
         <source>Chancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../../gui/games.py" line="201"/>
+        <location filename="../../gui/games.py" line="284"/>
         <source>Time:</source>
         <translation>um:</translation>
     </message>
     <message>
-        <location filename="../../gui/games.py" line="207"/>
+        <location filename="../../gui/games.py" line="290"/>
         <source>Game:</source>
         <translation>Spielergebnis:</translation>
     </message>
     <message>
-        <location filename="../../gui/games.py" line="213"/>
+        <location filename="../../gui/games.py" line="296"/>
         <source>Team 1:</source>
-        <translation type="unfinished"></translation>
+        <translation>Team 1:</translation>
     </message>
     <message>
-        <location filename="../../gui/games.py" line="233"/>
+        <location filename="../../gui/games.py" line="316"/>
         <source>Points:</source>
         <translation>Bummerl:</translation>
     </message>
     <message>
-        <location filename="../../gui/games.py" line="226"/>
+        <location filename="../../gui/games.py" line="309"/>
         <source>Team 2:</source>
-        <translation type="unfinished"></translation>
+        <translation>Team 2:</translation>
     </message>
     <message>
-        <location filename="../../gui/games.py" line="288"/>
+        <location filename="../../gui/games.py" line="371"/>
         <source>Game saved</source>
         <translation>Spielergebnis gespeichert</translation>
     </message>
     <message>
-        <location filename="../../gui/games.py" line="293"/>
+        <location filename="../../gui/games.py" line="376"/>
         <source>Game not saved</source>
         <translation>Spielergebnis nicht gespeichert</translation>
     </message>
     <message>
-        <location filename="../../gui/games.py" line="293"/>
+        <location filename="../../gui/games.py" line="376"/>
         <source>An error ocured while saving: </source>
         <translation>Fehler beim speichern: </translation>
     </message>
     <message>
-        <location filename="../../gui/games.py" line="303"/>
+        <location filename="../../gui/games.py" line="386"/>
         <source>Chancel?</source>
         <translation>Abbrechen?</translation>
     </message>
     <message>
-        <location filename="../../gui/games.py" line="303"/>
+        <location filename="../../gui/games.py" line="386"/>
         <source>Are you sure you want to chancel and do not save the game?</source>
         <translation>Wollen Sie wirklich abbrechen und das Splielergebnis nicht speichern?</translation>
     </message>
     <message>
-        <location filename="../../gui/games.py" line="288"/>
+        <location filename="../../gui/games.py" line="371"/>
         <source>The game was saved succesfully.</source>
         <translation>Das Spielergebnis wurde erfolgreich gespeichert.</translation>
     </message>
     <message>
-        <location filename="../../gui/games.py" line="180"/>
+        <location filename="../../gui/games.py" line="263"/>
         <source>Error!
 There are not enough Players.</source>
         <translation>Fehler!
@@ -109,32 +109,32 @@ Es gibt nicht genügend Spieler.</translation>
         <translation>Nachname:</translation>
     </message>
     <message>
-        <location filename="../../gui/players.py" line="116"/>
+        <location filename="../../gui/players.py" line="117"/>
         <source>Fill all</source>
         <translation>Alles ausfüllen</translation>
     </message>
     <message>
-        <location filename="../../gui/players.py" line="116"/>
+        <location filename="../../gui/players.py" line="117"/>
         <source>Please fill in all fields.</source>
         <translation>Bitte füllen sie alle Felder aus.</translation>
     </message>
     <message>
-        <location filename="../../gui/players.py" line="130"/>
+        <location filename="../../gui/players.py" line="131"/>
         <source>Player saved</source>
         <translation>Spieler gespeichert</translation>
     </message>
     <message>
-        <location filename="../../gui/players.py" line="130"/>
+        <location filename="../../gui/players.py" line="131"/>
         <source>The player was saved successfully.</source>
         <translation>Der Spieler wurde erfolgreich gespeichert.</translation>
     </message>
     <message>
-        <location filename="../../gui/players.py" line="141"/>
+        <location filename="../../gui/players.py" line="142"/>
         <source>Chancel?</source>
         <translation>Abbrechen?</translation>
     </message>
     <message>
-        <location filename="../../gui/players.py" line="141"/>
+        <location filename="../../gui/players.py" line="142"/>
         <source>Are you sure you want to chancel and do not save the player?</source>
         <translation>Wollen Sie wirklich abbrechen und den Splieler nicht speichern?</translation>
     </message>
@@ -159,20 +159,20 @@ Es gibt nicht genügend Spieler.</translation>
     <message>
         <location filename="../../gui/games.py" line="62"/>
         <source>Show Analysis</source>
-        <translation>Analysiere Ergebnisse</translation>
+        <translation type="obsolete">Analysiere Ergebnisse</translation>
     </message>
     <message>
-        <location filename="../../gui/games.py" line="78"/>
+        <location filename="../../gui/games.py" line="214"/>
         <source>Team 1:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../gui/games.py" line="104"/>
+        <location filename="../../gui/games.py" line="214"/>
         <source>Points:</source>
         <translation>Bummerl:</translation>
     </message>
     <message>
-        <location filename="../../gui/games.py" line="97"/>
+        <location filename="../../gui/games.py" line="214"/>
         <source>Team 2:</source>
         <translation></translation>
     </message>
@@ -187,14 +187,14 @@ Es gibt nicht genügend Spieler.</translation>
         <translation type="obsolete">Fehler beim speichern: </translation>
     </message>
     <message>
-        <location filename="../../gui/games.py" line="66"/>
+        <location filename="../../gui/games.py" line="214"/>
         <source>Games played:</source>
-        <translation>Anzahl der Spiele</translation>
+        <translation>Anzahl der Spiele:</translation>
     </message>
     <message>
         <location filename="../../gui/games.py" line="110"/>
         <source> AVG Points per Game:</source>
-        <translation>Durchschnittliche Bummerl pro Spiel</translation>
+        <translation type="obsolete">Durchschnittliche Bummerl pro Spiel</translation>
     </message>
     <message>
         <location filename="../../gui/games.py" line="57"/>
@@ -203,16 +203,41 @@ There are not enough Players.</source>
         <translation>Fehler!
 Es gibt nicht genügend Spieler.</translation>
     </message>
+    <message>
+        <location filename="../../gui/games.py" line="62"/>
+        <source>Print Analysis</source>
+        <translation>Analyse Drucken</translation>
+    </message>
+    <message>
+        <location filename="../../gui/games.py" line="214"/>
+        <source>Difference:</source>
+        <translation>Differenz:</translation>
+    </message>
+    <message>
+        <location filename="../../gui/games.py" line="214"/>
+        <source>AVG Points per Game:</source>
+        <translation>Durchschnittliche Bummerl pro Spiel:</translation>
+    </message>
+    <message>
+        <location filename="../../gui/games.py" line="214"/>
+        <source>Stat466 - Analysis</source>
+        <translation>Stat466 - Analyse</translation>
+    </message>
+    <message>
+        <location filename="../../gui/games.py" line="214"/>
+        <source>and</source>
+        <translation>und</translation>
+    </message>
 </context>
 <context>
     <name>Home</name>
     <message>
-        <location filename="../../gui/main.py" line="203"/>
+        <location filename="../../gui/main.py" line="204"/>
         <source>Welcome to</source>
         <translation>Willkommen zu</translation>
     </message>
     <message>
-        <location filename="../../gui/main.py" line="205"/>
+        <location filename="../../gui/main.py" line="206"/>
         <source>Stat466 - Statistics for Bauernschnapsen</source>
         <translation>Stat466 - Statistik für Bauernschnapsen</translation>
     </message>
@@ -220,32 +245,32 @@ Es gibt nicht genügend Spieler.</translation>
 <context>
     <name>ListPlayers</name>
     <message>
-        <location filename="../../gui/players.py" line="174"/>
+        <location filename="../../gui/players.py" line="175"/>
         <source>Edit Players</source>
         <translation>Spieler bearbeiten</translation>
     </message>
     <message>
-        <location filename="../../gui/players.py" line="219"/>
+        <location filename="../../gui/players.py" line="220"/>
         <source>Delete?</source>
         <translation>Löschen?</translation>
     </message>
     <message>
-        <location filename="../../gui/players.py" line="219"/>
+        <location filename="../../gui/players.py" line="220"/>
         <source>Are you sure you want to delete the player? This also deletes all games he played</source>
         <translation>Wollen Sie den Spieler wirklich löschen? Dadurch werden auch alle seine Spiele gelöscht.</translation>
     </message>
     <message>
-        <location filename="../../gui/players.py" line="181"/>
+        <location filename="../../gui/players.py" line="182"/>
         <source>Edit Player</source>
         <translation>Spieler bearbeiten</translation>
     </message>
     <message>
-        <location filename="../../gui/players.py" line="187"/>
+        <location filename="../../gui/players.py" line="188"/>
         <source>Delete Player</source>
         <translation>Spieler löschen</translation>
     </message>
     <message>
-        <location filename="../../gui/players.py" line="184"/>
+        <location filename="../../gui/players.py" line="185"/>
         <source>Statistics</source>
         <translation>Statistik</translation>
     </message>
@@ -298,12 +323,12 @@ Es gibt nicht genügend Spieler.</translation>
         <translation type="obsolete">Über Stat466</translation>
     </message>
     <message>
-        <location filename="../../gui/main.py" line="165"/>
+        <location filename="../../gui/main.py" line="166"/>
         <source>Quit?</source>
         <translation>Beenden?</translation>
     </message>
     <message>
-        <location filename="../../gui/main.py" line="165"/>
+        <location filename="../../gui/main.py" line="166"/>
         <source>Are you sure to quit?</source>
         <translation>Wollen Sie wirklich beenden?</translation>
     </message>
@@ -402,27 +427,27 @@ e-mail: josef.wachtler@gmail.com</translation>
 <context>
     <name>PlayerStatistics</name>
     <message>
-        <location filename="../../gui/players.py" line="273"/>
+        <location filename="../../gui/players.py" line="274"/>
         <source>Back</source>
         <translation>Zurück</translation>
     </message>
     <message>
-        <location filename="../../gui/players.py" line="277"/>
+        <location filename="../../gui/players.py" line="278"/>
         <source>Statistics of all Games of:</source>
         <translation>Statistik aller Spielergebnisse von:</translation>
     </message>
     <message>
-        <location filename="../../gui/players.py" line="284"/>
+        <location filename="../../gui/players.py" line="285"/>
         <source>Games played:</source>
         <translation>Anzahl der Spiele:</translation>
     </message>
     <message>
-        <location filename="../../gui/players.py" line="290"/>
+        <location filename="../../gui/players.py" line="291"/>
         <source>Points lost:</source>
         <translation>Verlorene Bummerl:</translation>
     </message>
     <message>
-        <location filename="../../gui/players.py" line="296"/>
+        <location filename="../../gui/players.py" line="297"/>
         <source>Points won:</source>
         <translation>Gewonnene Bummerl:</translation>
     </message>
