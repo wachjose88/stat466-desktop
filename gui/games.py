@@ -59,6 +59,11 @@ class GameAnalysis(QWidget):
             return
             
         greet = QLabel(self.tr('Analysis'), self)
+        greet.setStyleSheet("""
+            QLabel { 
+                font-size: 12pt;
+            }""")
+         
         ok = QPushButton(self.tr('Print Analysis'), self)
         self.connect(ok, SIGNAL('clicked()'), 
             self.__handle_print)
@@ -297,6 +302,10 @@ class EditGame(QWidget):
             return
         
         greet = QLabel(self.tr('Create a new Game'), self)
+        greet.setStyleSheet("""
+            QLabel { 
+                font-size: 12pt;
+            }""")
         at_lbl = QLabel(self.tr('Played at:'), self)
         
         self.calendar = QCalendarWidget()

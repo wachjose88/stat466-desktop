@@ -202,8 +202,16 @@ class Home(QtGui.QWidget):
         QtGui.QWidget.__init__(self)
 
         self.greet = QtGui.QLabel(self.tr('Welcome to'), self)
+        self.greet.setStyleSheet("""
+            QLabel { 
+                font-size: 12pt;
+            }""")
         self.greet.move(80, 30)
         self.name = QtGui.QLabel(self.tr('Stat466 - Statistics for Bauernschnapsen'), self)
+        self.name.setStyleSheet("""
+            QLabel { 
+                font-size: 12pt;
+            }""")
         self.name.move(80, 60)
         self.cards = QtGui.QLabel(self)
         self.cards.setPixmap(QtGui.QPixmap('resources/icons/cards.jpg'))

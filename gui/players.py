@@ -60,6 +60,10 @@ class EditPlayer(QWidget):
         if player is not None:
             gtext = self.tr('Edit a Player')
         greet = QLabel(gtext, self)
+        greet.setStyleSheet("""
+            QLabel { 
+                font-size: 12pt;
+            }""")
         
         save = QPushButton(self.tr('Save Player'), self)
         self.connect(save, QtCore.SIGNAL('clicked()'), 
@@ -173,6 +177,10 @@ class ListPlayers(QWidget):
         self.parent = parent
         
         greet = QLabel(self.tr('Edit Players'), self)
+        greet.setStyleSheet("""
+            QLabel { 
+                font-size: 12pt;
+            }""")
         
         self.list_of_players = QListWidget()
         
@@ -276,6 +284,10 @@ class PlayerStatistics(QWidget):
             self.__handle_back)
         
         greet = QLabel(self.tr('Statistics of all Games of:'), self)
+        greet.setStyleSheet("""
+            QLabel { 
+                font-size: 12pt;
+            }""")
         name = QLabel(self.player_to.name + ' ' + self.player_to.fullname, self)
         
         hbox_name = QHBoxLayout() 
