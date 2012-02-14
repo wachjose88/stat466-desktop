@@ -314,7 +314,7 @@ class EditGame(QWidget):
             self.__handle_chancel) 
          
         lbl_time = QLabel(self.tr('Time:'), self)
-        self.time = QLineEdit('12:34')
+        self.time = QTimeEdit(QTime.currentTime (), self)
         hbox_time = QHBoxLayout()
         hbox_time.addWidget(lbl_time)
         hbox_time.addWidget(self.time)
@@ -389,8 +389,10 @@ class EditGame(QWidget):
         """
         try:
             date = self.calendar.selectedDate()
-            ds = '%d-%d-%d ' % (date.year(), date.month(), date.day())
-            played_at = parser.parse(unicode(ds + self.time.text()))
+            time = self.time.time()
+            ds = '%d-%d-%d %d:%d' % (date.year(), date.month(), date.day(),
+                time.hour(), time.minute())
+            played_at = parser.parse(unicode(ds))
             pt1 = int(self.points_t1.text())
             pt2 = int(self.points_t2.text())
             t1p1 = self.all_players[self.combo_t1_p1.currentIndex()] 
