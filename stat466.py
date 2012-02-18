@@ -42,11 +42,11 @@ def main(args):
     Qt and Stat466. Finally it shows the MainWindow and enters the main
     loop of the app.
     """
-    if len(args) == 1 and args[0] == '-d':
+    if len(args) == 1 and ( args[0] == '-d' or args[0] == '--debug'):
         logging.basicConfig(
             format='%(asctime)s %(levelname)s: %(message)s',
             level=logging.DEBUG)
-    else:
+    elif len(args) == 0:
         dir = os.path.expanduser('~/.stat466')
         if not os.path.exists(dir):
             os.makedirs(dir)
@@ -55,6 +55,10 @@ def main(args):
             format='%(asctime)s %(levelname)s: %(message)s',
             filename=(dir + '/main.log'), 
             level=logging.INFO)
+    else:
+        print 'Stat466 - Statistics for Bauernschnapsen\n'
+        print 'usage: stat466.py [-d | -debug]\n'
+        return 0
         
     logging.info('Start of Stat466')
     app = QtGui.QApplication(sys.argv)
