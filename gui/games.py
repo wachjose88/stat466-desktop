@@ -246,25 +246,43 @@ class GameAnalysis(QWidget):
         t2p2 = self.all_players[self.combo_t2_p2.currentIndex()]
         date_from = self.start_date.date().toPyDate()
         date_to = self.end_date.date().toPyDate()
-        printLabel = QLabel(self.tr('Stat466 - Analysis')
-            + '\n\n' + self.tr('From:') + ' ' + unicode(date_from)
-            + '\n' + self.tr('To:') + ' ' + unicode(date_to)
-            + '\n\n' + self.tr('Games played:') + ' ' + unicode(p['num'])
-            + '\n\n-----------------------------------------------------------------\n' 
-            + self.tr('Team 1:') + ' ' + t1p1.name + ' ' + t1p1.fullname
-            + ' ' + self.tr('and') + ' ' + t1p2.name + ' ' + t1p2.fullname
-            + '\n' + self.tr('Points:') + ' ' + unicode(p['t1'])
-            + '\n' + self.tr('Difference:') + ' ' + unicode(p['d1'])
-            + '\n' + self.tr('AVG Points per Game:') + ' ' + unicode(p['a1'])
-            + '\n-----------------------------------------------------------------' 
-            + '\n\n-----------------------------------------------------------------\n' 
-            + self.tr('Team 2:') + ' ' + t2p1.name + ' ' + t2p1.fullname
-            + ' ' + self.tr('and') + ' ' + t2p2.name + ' ' + t2p2.fullname
-            + '\n' + self.tr('Points:') + ' ' + unicode(p['t2'])
-            + '\n' + self.tr('Difference:') + ' ' + unicode(p['d2'])
-            + '\n' + self.tr('AVG Points per Game:') + ' ' + unicode(p['a2'])
-            + '\n-----------------------------------------------------------------\n' 
+        
+        fs_main = '-----------------------------------------------------------------\n'
+        fs_main += ' {:s}\n'
+        fs_main += '-----------------------------------------------------------------\n'
+        
+        fs_main += '\n {:<21s} {:s}\n {:<21s} {:s}\n\n {:<21s} {:d}'
+        s_main = fs_main.format(self.tr('Stat466 - Analysis'),
+            self.tr('From:'), unicode(date_from),
+            self.tr('To:'), unicode(date_to),
+            self.tr('Games played:'), p['num']
         )
+        
+        fs_stat = '\n\n-----------------------------------------------------------------\n' 
+        fs_stat += ' {:<10s} {:>52s}\n'
+        fs_stat += ' {:<38s} {:>24d}\n'
+        fs_stat += ' {:<38s} {:>24d}\n'
+        fs_stat += ' {:<38s} {:>24d}'
+        fs_stat += '\n-----------------------------------------------------------------' 
+        
+        n_team1 = t1p1.name + ' ' + t1p1.fullname + ' ' + self.tr('and') 
+        n_team1 += ' ' + t1p2.name + ' ' + t1p2.fullname
+        s_team1 = unicode( fs_stat).format(
+            self.tr('Team 1:'), n_team1,
+            self.tr('Points:'), p['t1'],
+            self.tr('Difference:'), p['d1'],
+            self.tr('AVG Points per Game:'), p['a1']
+        )
+        n_team2 = t2p1.name + ' ' + t2p1.fullname + ' ' + self.tr('and') 
+        n_team2 += ' ' + t2p2.name + ' ' + t2p2.fullname
+        s_team2 = unicode( fs_stat).format(
+            self.tr('Team 2:'), n_team2,
+            self.tr('Points:'), p['t2'],
+            self.tr('Difference:'), p['d2'],
+            self.tr('AVG Points per Game:'), p['a2']
+        )
+        
+        printLabel = QLabel(s_main + s_team1 + s_team2 )
          
         printLabel.setStyleSheet("""
             QLabel { 
