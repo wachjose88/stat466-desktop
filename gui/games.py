@@ -194,9 +194,10 @@ class GameAnalysis(QWidget):
         t2p2 = self.all_players[self.combo_t2_p2.currentIndex()]
         date_from = self.start_date.date().toPyDate()
         date_to = self.end_date.date().toPyDate()
+        date_to1 = datetime.datetime.combine(date_to, datetime.time(23,59,59))
         params = {'t1p1' : t1p1.id, 't1p2' : t1p2.id, 
             't2p1' : t2p1.id, 't2p2' : t2p2.id,
-            'from' : date_from, 'to' : date_to }
+            'from' : date_from, 'to' : date_to1 }
         p = Game.getAnalysis(params)
         a1 = 0
         a2 = 0
