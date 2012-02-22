@@ -29,7 +29,6 @@ it offers an analysis of games.
 
 import logging
 import datetime
-from dateutil import parser
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from database.models import Player, Game
@@ -416,11 +415,9 @@ class EditGame(QWidget):
         Saves the new game to db.
         """
         try:
-            date = self.calendar.selectedDate()
-            time = self.time.time()
-            ds = '%d-%d-%d %d:%d' % (date.year(), date.month(), date.day(),
-                time.hour(), time.minute())
-            played_at = parser.parse(unicode(ds))
+            date = self.calendar.selectedDate().toPyDate()
+            time = self.time.time().toPyTime()
+            played_at = datetime.datetime.combine(date, time)
             pt1 = int(self.points_t1.text())
             pt2 = int(self.points_t2.text())
             t1p1 = self.all_players[self.combo_t1_p1.currentIndex()] 

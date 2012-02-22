@@ -29,7 +29,6 @@ it offers a list of players.
 
 import logging
 import datetime
-from dateutil import parser
 from PyQt4 import QtCore
 from PyQt4.QtGui import *
 from database.models import Player
