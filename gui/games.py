@@ -73,8 +73,12 @@ class GameAnalysis(QWidget):
         hbox_num.addWidget(lbl_num)
         hbox_num.addWidget(self.num)
         
+        mind = Game.getMinDate()
+        d_from = QDate(1900, 1, 1)
+        if mind is not None and len(mind) > 9:
+            d_from = QDate.fromString(mind[0:10], 'yyyy-MM-dd')
         lbl_start_date = QLabel(self.tr('From:'), self)
-        self.start_date = QDateEdit(QDate(1900, 1, 1), self)
+        self.start_date = QDateEdit(d_from, self)
         self.start_date.setDisplayFormat('dd.MM.yyyy')
         self.start_date.setMinimumDate(QDate(1900, 1, 1))
         self.start_date.setMaximumDate(QDate(3000, 1, 1))

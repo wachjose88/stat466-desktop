@@ -57,7 +57,7 @@ def main(args):
             level=logging.INFO)
     else:
         print 'Stat466 - Statistics for Bauernschnapsen\n'
-        print 'usage: stat466.py [-d | -debug]\n'
+        print 'usage: stat466.py [-d | --debug]\n'
         return 0
         
     logging.info('Start of Stat466')

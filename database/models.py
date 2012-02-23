@@ -403,3 +403,21 @@ class Game():
                        id = g[0])
             all_games.append(n)
         return all_games
+    
+    
+    @staticmethod
+    def getMinDate():
+        """
+        This method returns the lowest date of the games in the 
+        database.
+        """
+        Game.create()
+        Player.create()
+        dbc = DBConnector()
+        dbc.connect()
+        sql = """SELECT MIN(played_at) FROM tbl_games"""
+        dates = dbc.execute(sql)
+        dbc.close()
+        if len(dates) > 0 and len(dates[0]):
+            return dates[0][0]
+        return None
