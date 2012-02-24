@@ -41,7 +41,9 @@
    
    4.) Installation and  Run
   ===========================
-  
-   To install Stat466 extract the archive stat466-0-1.tar.gz and to
+   
+   To install Stat466 extract the archive stat466-0-2.tar.gz and to
    run start the file stat466.py with python.
+   
+   You can also use python setuptools to install Stat466.
    
