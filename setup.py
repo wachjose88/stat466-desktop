@@ -7,7 +7,7 @@ setup(name = "Stat466",
     description = "Statistics for Bauernschnapsen",
     author = "Josef Wachtler",
     author_email = "josef.wachtler@gmail.com",
-    url = "sourceforge.net/projects/stat466/",
+    url = "https://github.com/wachjose88/stat466-desktop",
     
     packages = ['gui', 'database'], 
     

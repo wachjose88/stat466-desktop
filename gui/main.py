@@ -155,7 +155,7 @@ class MainWindow(QtGui.QMainWindow):
         + 'the famous card game Bauernschnapsen.') + '\n\n'
         + self.tr('Author:') + ' Josef Wachtler\n'
         + self.tr('e-mail:') + ' josef.wachtler@gmail.com\n'
-        + self.tr('Web:') + ' sourceforge.net/projects/stat466/\n')
+        + self.tr('Web:') + ' https://github.com/wachjose88/stat466-desktop\n')
     
     
     def closeEvent(self, event):
